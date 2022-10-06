@@ -42,10 +42,15 @@ INSTALLED_APPS = [
     "rest_framework",
     "authentication",
     "contacts",
+    "rest_framework.authtoken"
 ]
 REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ( 
+        'rest_framework.permissions.IsAuthenticated', 
+    ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'authentication.backends.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication'
     )
 }
 
@@ -122,7 +127,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-JWT_SECRET_KEY = 'JWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEYJWT_SECRET_KEY'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
