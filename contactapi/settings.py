@@ -39,11 +39,26 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # third party app
     "rest_framework",
+    "rest_framework.authtoken",
+    "drf_yasg",
+
+    # apps
     "authentication",
     "contacts",
-    "rest_framework.authtoken"
+
 ]
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS':{
+        "Auth Token":{
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ( 
         'rest_framework.permissions.IsAuthenticated', 

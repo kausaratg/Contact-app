@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.generics import GenericAPIView, CreateAPIView
-from authentication.serializers import UserSerializer
+from authentication.serializers import UserSerializer, LoginSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.conf import settings
@@ -14,9 +14,9 @@ class RegisterView(CreateAPIView):
     permission_classes = ()
     serializer_class = UserSerializer
 
-class LoginView(APIView):
+class LoginView(GenericAPIView):
     permission_classes = ()
-    
+    serializer_class = LoginSerializer
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
